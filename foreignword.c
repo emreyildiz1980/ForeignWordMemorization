@@ -39,7 +39,7 @@ int main()
 
     char wordname[50]; // string to store name of the word
 
-    long int recsize; // size of each record of employee
+    long int recsize; // size of each record of word
 
     /** open the file in binary read and write mode
      * if the file WORD.DAT already exist then it open that file read-write mode
