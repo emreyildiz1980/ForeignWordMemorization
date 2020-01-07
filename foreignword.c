@@ -176,18 +176,24 @@ int main()
             system("cls");
             rewind(fp);
             int wordcount = 0, rnd = 0;
-            while (fread(&w, recsize, 1, fp) == 1)
+            if (fp != NULL)
             {
-                ++wordcount;
+                while (fread(&w, recsize, 1, fp) == 1)
+                {
+                    ++wordcount;
+                }
+                if (wordcount != 0)
+                {
+                    rnd = rand() % wordcount;
+                    rewind(fp);
+                    fseek(fp, recsize * rnd, SEEK_SET);
+                    fread(&w, recsize, 1, fp);
+                    printf("\n\n%s : \n\n ", w.name);
+                    printf("\t\t%s\n\n ", w.meaningEng);
+                    printf("\t\t%s\n\n ", w.meaningFor);
+                    printf("\t\t\t***  %s\n\n ", w.wordinsentence);
+                }
             }
-            rnd = rand() % wordcount;
-            rewind(fp);
-            fseek(fp, recsize * rnd, SEEK_SET);
-            fread(&w, recsize, 1, fp);
-            printf("\n\n%s : \n\n ", w.name);
-            printf("\t\t%s\n\n ", w.meaningEng);
-            printf("\t\t%s\n\n ", w.meaningFor);
-            printf("\t\t\t***  %s\n\n ", w.wordinsentence);
 
             getch();
             break;
