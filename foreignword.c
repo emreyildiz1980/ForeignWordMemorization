@@ -29,15 +29,15 @@ int main()
     /** structure that represent a word */
     struct word
     {
-        char name[20];            //name of the word
-        char meaningEng[50];      // word meaning in English
-        char meaningFor[50];      // word meaning in your Native Language(for example Turkish)
-        char wordinsentence[100]; // write a sentence with this word
+        char name[50];            //name of the word
+        char meaningEng[200];     // word meaning in English
+        char meaningFor[100];     // word meaning in your Native Language(for example Turkish)
+        char wordinsentence[200]; // write a sentence with this word
     };
 
     struct word w; // structure variable creation
 
-    char wordname[20]; // string to store name of the word
+    char wordname[50]; // string to store name of the word
 
     long int recsize; // size of each record of employee
 
@@ -107,10 +107,11 @@ int main()
             break;
         case '2':
             system("cls");
-            rewind(fp);                            /// this moves file cursor to the start of the file
+            rewind(fp); /// this moves file cursor to the start of the file
+            int num = 1;
             while (fread(&w, recsize, 1, fp) == 1) /// read the file and fetch the record one record per fetch
             {
-                printf("\n%s : %s", w.name, w.meaningFor); //  print the name and the meaning for your native language
+                printf("\n%d. %s : %s", num++, w.name, w.meaningFor); //  print the name and the meaning for your native language
             }
             getch();
             break;
@@ -183,7 +184,10 @@ int main()
             rewind(fp);
             fseek(fp, recsize * rnd, SEEK_SET);
             fread(&w, recsize, 1, fp);
-            printf("\n%s : %s", w.name, w.meaningFor);
+            printf("\n\n%s : \n\n ", w.name);
+            printf("\t\t%s\n\n ", w.meaningEng);
+            printf("\t\t%s\n\n ", w.meaningFor);
+            printf("\t\t\t***  %s\n\n ", w.wordinsentence);
 
             getch();
             break;
